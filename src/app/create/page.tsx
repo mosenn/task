@@ -12,7 +12,7 @@ const CreateUser = () => {
       {/* <h1>{Myname}</h1> */}
       <Link href="/"> home page</Link>
 
-      <Form name="" phone="" email="" userId="" users={[]} id="" />
+      <Form name="" phone="" email="" userId="" />
     </div>
   );
 };

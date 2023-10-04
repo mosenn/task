@@ -24,8 +24,6 @@ const uniqUser = async ({
       <p>{params.id}</p>
       <p>{users.name}</p>
       <Form
-        users={[]}
-        id=""
         name={users.name}
         phone={users.phone}
         email={users.email}

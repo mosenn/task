@@ -13,7 +13,17 @@ interface usersType {
   users: [];
 }
 
-const Form = ({ userId, name, email, phone }: usersType) => {
+const Form = ({
+  userId,
+  name,
+  email,
+  phone,
+}: {
+  name: string;
+  email: string;
+  phone: string;
+  userId: string;
+}) => {
   const route = useRouter();
   const { users, setUsers } = useGlobalContext();
 
