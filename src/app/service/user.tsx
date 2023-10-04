@@ -26,11 +26,10 @@ export const createUser = async (userValue: usersType, userId: string) => {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
-    console.log(response);
+
     // status is Ok
     if (response.status === 201) {
       const newUser = await response.json();
-      console.log(newUser, "new user");
       return newUser;
       // setUsers(...user, newUser);
     }
@@ -62,14 +61,13 @@ export const updateUser = async (
         },
       }
     );
-    console.log(response);
+
     // status is Ok
 
     if (response.status === 200) {
       const update = await response.json();
       // update user
       const updatedUsers = user.map((u: usersType) => {
-        console.log(user, "users in update before if");
         if (u.id === userId) {
           return {
             id: userId,
@@ -93,7 +91,6 @@ export const deleteUser = async (
   users: usersType[],
   setUsers: React.Dispatch<React.SetStateAction<usersType[]>>
 ) => {
-  // console.log(users, "users in deleteUser");
   try {
     const response = await fetch(`${url}/users/${userId}`, {
       method: "DELETE",
@@ -102,7 +99,7 @@ export const deleteUser = async (
       },
     });
     const data = await response.json();
-    // console.log(data, "delete function");
+
     // || response.status === 204
     if (response.status === 200) {
       const deleteUser = await users.filter((u: usersType) => u.id !== userId);

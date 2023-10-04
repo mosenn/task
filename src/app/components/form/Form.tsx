@@ -41,12 +41,10 @@ const Form = ({
     phone: "",
     name: "",
   });
-  console.log(name, email, phone);
   // handle inputs , submit , change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserValue({ ...userValue, [e.target.name]: e.target.value.trim() });
   };
-  // console.log(pathName);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

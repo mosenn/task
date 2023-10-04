@@ -16,9 +16,7 @@ interface singleUser {
 export const SingleUser = ({ id, name, email, phone }: singleUser) => {
   const [activeForm, setActiveForm] = useState(true);
   const { users, setUsers } = useGlobalContext();
-  // console.log(setUsers, "single user setUsers");
-  // console.log(users, "single user all user");
-  // console.log(id, "id in singleUser");
+
   return (
     <div>
       <section className="my-2 text-xl">
