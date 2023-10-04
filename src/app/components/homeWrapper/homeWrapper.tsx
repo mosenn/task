@@ -13,7 +13,7 @@ const HomeWrapper = ({ searchParams }: any) => {
 
   const entries = users.slice(start, end);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex  flex-col items-center justify-between p-24">
       <WrapperUser entries={entries} />
       <PagenationControls
         hasNextPage={end < users.length}

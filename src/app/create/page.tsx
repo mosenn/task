@@ -3,16 +3,23 @@ import { useState } from "react";
 import Form from "../components/form/Form";
 import { useGlobalContext } from "../context/store";
 import Link from "next/link";
+import PageLink from "../components/PageLink/PageLink";
 
 const CreateUser = () => {
   const { users } = useGlobalContext();
-  console.log(users, "user []");
-  return (
-    <div>
-      {/* <h1>{Myname}</h1> */}
-      <Link href="/"> home page</Link>
 
-      <Form name="" phone="" email="" userId="" />
+  return (
+    <div className="  justify-center items-center">
+      <PageLink text="back to home page" address="/" />
+      <div>
+        <Form
+          name=""
+          phone=""
+          email=""
+          userId=""
+          style={`w-[100%]  h-fit  flex h-screen  justify-center items-center`}
+        />
+      </div>
     </div>
   );
 };

@@ -1,6 +1,8 @@
 "use client";
 
+import PageLink from "@/app/components/PageLink/PageLink";
 import Form from "@/app/components/form/Form";
+import Link from "next/link";
 
 const url = `https://${process.env.NEXT_PUBLIC_ENV_API_TOKEN}.mockapi.io`;
 
@@ -16,19 +18,19 @@ const uniqUser = async ({
 }) => {
   const users = await user(params.id);
 
-  console.log(users, "users");
-  console.log(params);
   return (
     <div>
-      update user
-      <p>{params.id}</p>
-      <p>{users.name}</p>
-      <Form
-        name={users.name}
-        phone={users.phone}
-        email={users.email}
-        userId={users.id}
-      />
+      <PageLink text="back to home page" address="/" />
+
+      <div className="">
+        <Form
+          style={`w-[100%]  h-fit  flex h-screen  justify-center items-center`}
+          name={users.name}
+          phone={users.phone}
+          email={users.email}
+          userId={users.id}
+        />
+      </div>
     </div>
   );
 };

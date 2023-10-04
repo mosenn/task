@@ -12,22 +12,20 @@ export const allUsers = async () => {
   return response.json();
 };
 
-export const createUser = async (userValue: usersType) => {
+export const createUser = async (userValue: usersType, userId: string) => {
   try {
-    const response = await fetch(
-      `https://63d108283f08e4a8ff8ef010.mockapi.io/users`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          name: userValue.name,
-          email: userValue.email,
-          phone: userValue.phone,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      }
-    );
+    const response = await fetch(`${url}/users`, {
+      method: "POST",
+      body: JSON.stringify({
+        id: userId,
+        name: userValue.name,
+        email: userValue.email,
+        phone: userValue.phone,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
     console.log(response);
     // status is Ok
     if (response.status === 201) {

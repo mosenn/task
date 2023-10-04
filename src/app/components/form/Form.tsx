@@ -14,6 +14,7 @@ interface usersType {
 }
 
 const Form = ({
+  style,
   userId,
   name,
   email,
@@ -23,6 +24,7 @@ const Form = ({
   email: string;
   phone: string;
   userId: string;
+  style: string;
 }) => {
   const route = useRouter();
   const { users, setUsers } = useGlobalContext();
@@ -62,7 +64,10 @@ const Form = ({
         route.push("/");
       }
       if (pathName === "/create") {
-        const response = await createUser(userValue as usersType);
+        const response = await createUser(
+          userValue as usersType,
+          userId as string
+        );
         const newUser = [...users, response];
         setUsers(newUser);
         route.push("/");
@@ -73,14 +78,15 @@ const Form = ({
   return (
     <div>
       {Object.values(errorMessage).map((err, index) => {
-        return <p key={index}>{err}</p>;
+        return (
+          <div key={index} className="flex flex-col items-center ">
+            <p >{err}</p>
+          </div>
+        );
       })}
-      <form
-        onSubmit={handleSubmit}
-        className=" flex flex-col  align-center justify-center border border-red-300"
-      >
+      <form onSubmit={handleSubmit} className={style}>
         <input
-          className="m-3 p-1 rounded-md"
+          className="m-3 p-2 rounded-md border border-gray-300 focus:outline-none focus:border-green-200 focus:ring-1 focus:ring-green-300"
           type="text"
           placeholder="name"
           onChange={handleChange}
@@ -88,7 +94,7 @@ const Form = ({
           value={userValue.name}
         />
         <input
-          className="m-3 p-1 rounded-md"
+          className="m-3 p-2 rounded-md border border-gray-300 focus:outline-none focus:border-green-200 focus:ring-1 focus:ring-green-300"
           type="text"
           placeholder="email"
           onChange={handleChange}
@@ -96,7 +102,7 @@ const Form = ({
           value={userValue.email}
         />
         <input
-          className="m-3 p-1 rounded-md"
+          className="m-3 p-2 rounded-md border border-gray-300  focus:outline-none focus:border-green-200 focus:ring-1 focus:ring-green-300"
           type="text"
           placeholder="phone"
           name="phone"
@@ -105,7 +111,7 @@ const Form = ({
         />
 
         <button
-          className="bg-green-700 hover:bg-green-800 text-white rounded-md p-1 ml-3 w-28 "
+          className="bg-green-700 hover:bg-green-800 text-white rounded-md p-2 ml-3"
           type="submit"
         >
           {pathName === "/" || pathName === `/user/${userId}`

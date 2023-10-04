@@ -4,6 +4,8 @@ import Form from "../form/Form";
 import { deleteUser } from "../../service/user";
 import { useGlobalContext } from "@/app/context/store";
 import Link from "next/link";
+
+import { MdDelete, MdEdit } from "react-icons/md";
 interface singleUser {
   id: string;
   users: [];
@@ -16,34 +18,47 @@ export const SingleUser = ({ id, name, email, phone }: singleUser) => {
   const { users, setUsers } = useGlobalContext();
   // console.log(setUsers, "single user setUsers");
   // console.log(users, "single user all user");
-  console.log(id, "id in singleUser");
+  // console.log(id, "id in singleUser");
   return (
-    <div key={id}>
-      <p>{id}</p>
+    <div>
+      <section className="my-2 text-xl">
+        <p className="my-2">{id}</p>
+        <h1 className="my-2">name : {name}</h1>
+        <p className="my-2">email : {email}</p>
+        <p className="my-2">phone : {phone}</p>
+      </section>
+      <section className="flex items-center">
+        <button
+          onClick={() => {
+            deleteUser(id, users as [], setUsers as any);
+          }}
+        >
+          <MdDelete
+            size={25}
+            color={"rgb(248, 120, 120)"}
+            className="hover:fill-red-900"
+            title="delete"
+          />
+        </button>
+        <button
+          className="my-3 p-3"
+          onClick={() => {
+            // updateUser(id);
+            setActiveForm(!activeForm);
+          }}
+        >
+          <MdEdit
+            size={25}
+            color={`rgb(123, 183, 123)`}
+            className="hover:fill-green-800"
+            title="edit"
+          />
+        </button>
 
-      <h1>{name}</h1>
-
-      <p>{email}</p>
-      <p>{phone}</p>
-      <button
-        onClick={() => {
-          deleteUser(id, users as [], setUsers as any);
-        }}
-        className="p-3 m-3 bg-red-300"
-      >
-        delete
-      </button>
-      <button
-        onClick={() => {
-          // updateUser(id);
-          setActiveForm(!activeForm);
-        }}
-        className="p-3 m-3 bg-green-300"
-      >
-        edit{" "}
-      </button>
-
-      <Link href={`/user/${id}`}>edit in page</Link>
+        <Link className="hover:text-blue-400" href={`/user/${id}`}>
+          edit other page
+        </Link>
+      </section>
       <div
         className={`${
           activeForm
@@ -51,7 +66,13 @@ export const SingleUser = ({ id, name, email, phone }: singleUser) => {
             : "opacity-100 visible  h-full"
         }`}
       >
-        <Form name={name} email={email} phone={phone} userId={id} />
+        <Form
+          name={name}
+          email={email}
+          phone={phone}
+          userId={id}
+          style={`flex flex-col justify-center items-start py-2 my-2`}
+        />
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ interface controlProps {
   hasNextPage: boolean;
   hasPrevPage: boolean;
 }
+import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs";
 const PagenationControls = ({ hasNextPage, hasPrevPage }: controlProps) => {
   const { users } = useGlobalContext();
   const router = useRouter();
@@ -18,17 +19,25 @@ const PagenationControls = ({ hasNextPage, hasPrevPage }: controlProps) => {
   const prevPage = () => router.push(`/?page=${+page - 1}&per_page=${perPage}`);
   const nextPage = () => router.push(`/?page=${+page + 1}&per_page=${perPage}`);
   return (
-    <div>
+    <section className="flex items-center">
       <button disabled={!hasPrevPage} onClick={prevPage}>
-        prev
+        <BsArrowLeftShort
+          size={35}
+          fill={hasPrevPage ? "black" : "gray"}
+          className={`${hasPrevPage && "hover:fill-blue-400"}`}
+        />
       </button>
       <div>
         {page} / {Math.ceil(users.length / +perPage)}
       </div>
       <button disabled={!hasNextPage} onClick={nextPage}>
-        next
+        <BsArrowRightShort
+          size={35}
+          fill={hasNextPage ? "black" : "gray"}
+          className={`${hasNextPage && "hover:fill-blue-400"}`}
+        />
       </button>
-    </div>
+    </section>
   );
 };
 
