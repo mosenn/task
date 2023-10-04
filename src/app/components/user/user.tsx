@@ -5,7 +5,7 @@ import { deleteUser } from "../../service/user";
 import { useGlobalContext } from "@/app/context/store";
 import Link from "next/link";
 
-import { MdDelete, MdEdit } from "react-icons/md";
+import { MdDelete, MdEdit, MdClose } from "react-icons/md";
 interface singleUser {
   id: string;
   users: [];
@@ -45,12 +45,21 @@ export const SingleUser = ({ id, name, email, phone }: singleUser) => {
             setActiveForm(!activeForm);
           }}
         >
-          <MdEdit
-            size={25}
-            color={`rgb(123, 183, 123)`}
-            className="hover:fill-green-800"
-            title="edit"
-          />
+          {activeForm ? (
+            <MdEdit
+              size={25}
+              color={`rgb(123, 183, 123)`}
+              className="hover:fill-green-800"
+              title="edit"
+            />
+          ) : (
+            <MdClose
+              size={25}
+              title="close edit"
+              color={`rgb(123, 183, 123)`}
+              className="hover:fill-green-800"
+            />
+          )}
         </button>
 
         <Link className="hover:text-blue-400" href={`/user/${id}`}>

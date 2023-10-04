@@ -22,9 +22,9 @@ const uniqUser = async ({
     <div>
       <PageLink text="back to home page" address="/" />
 
-      <div className="">
+      <div className="flex justify-center">
         <Form
-          style={`w-[100%]  h-fit  flex h-screen  justify-center items-center`}
+          style={`w-[100%]  h-fit  flex flex-col h-fit  justify-center items-start md:flex-row md:items-center`}
           name={users.name}
           phone={users.phone}
           email={users.email}
